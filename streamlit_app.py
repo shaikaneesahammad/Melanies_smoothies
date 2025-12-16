@@ -3,6 +3,7 @@ import streamlit as st
 #from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 import pandas as pd
+import requests
 
 # Write directly to the app
 st.title(":cup_with_straw: Customize your smoothie :cup_with_straw:")
@@ -49,6 +50,11 @@ if ingredients_list:
       RESULT = session.sql(my_insert_stmt).collect()
       #st.write (RESULT)
       st.success("Your smoothie is ordered!",icon = "✅");
+
+
+
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
 
     
     
